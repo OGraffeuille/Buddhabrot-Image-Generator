@@ -6,3 +6,5 @@ A few lower resolution (2500x2500) images are shown here:
 ![buddhabrot example image 1](https://drive.google.com/uc?id=1GZLf3f8yhi0Rbg2gmroRac-YHl6Y6JIz)
 ![buddhabrot example image 2](https://drive.google.com/uc?id=1Rg3zEAskgumz0M7coD6GvwIkpRz_O85D)
 
+Note:
+'Lopsided' Buddhabrot images are made by changing the range of possible starting values for the first iteration of the algorithm, such that both real and imaginary components are positive.
