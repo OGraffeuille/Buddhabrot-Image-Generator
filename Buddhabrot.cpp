@@ -28,13 +28,15 @@ std::tuple<int, int, int> find_rgb(double a, const std::string& palette) {
 		r = std::max(std::min((int)(255 - 510 * a), 255), 0);
 		g = std::max(std::min((int)(510 * a - 255), 255), 0);
 		b = (int)(255 * -a * a * (2 * a - 3));
-	}
-	else if (palette == "Gold") {
+	} else if (palette == "Gold") {
 		r = (int)(128 + 127 * std::cos((a) * 4));
 		g = (int)(128 + 127 * std::cos((a + 0.333) * 4));
 		b = (int)(128 + 127 * std::cos((a + 0.666) * 4));
-	}
-	else { // Greyscale
+	} else if (palette == "Fire") {
+		r = std::min((int)(a * (3 - 2 * a) * 255), 255);
+		g = (int)(a * a * 250);//std::max(0, (int)(510 * a - 255));
+		b = 0;	
+	} else { // Greyscale
 		r = (int)(255 * a);
 		g = (int)(255 * a);
 		b = (int)(255 * a);
@@ -199,8 +201,8 @@ public:
 			// Find sensible start point
 			a = distribution(generator) / 1.e9;
 			b = distribution(generator) / 1.e9;
-			re = a * 2;
-			im = b * 2 - 2;
+			re = a * 4 - 2;
+			im = b * 4 - 2;
 			q = (re-0.25)*(re-0.25) + im*im;
 			if (countDist) dist[0]++;
 
@@ -545,7 +547,7 @@ public:
 		for (int i = 0; i < xDet*yDet; i++) {
 			outFile << count[i] << "\n";
 		}
-		std::cout << "Finished saving matrix text file (" << toc() << "s).\n\n";
+		std::cout << "Finished saving matrix text file " << toc() << "s).\n\n";
 	}
 
 	// Creates a txt file of distribution
@@ -567,12 +569,17 @@ public:
 
 int main() {
 
-	Buddhabrot BB(14, 25, 7500, 7500, -1.9, 1.5, -1.7, 1.7);
-	//Buddhabrot BB("Buddhabrot [7500x7500] [10-25] 400000000 points.txt");
+	// Create new buddhabrot, or load existing text file
+	Buddhabrot BB(2e4, 6e4, 2500, 2500, -1.6, 1.2, -1.4, 1.4);
+	//Buddhabrot BB("Sizetest [2500x2500] [20000-60000] 40 points.txt");
 
-	BB.CalcDouble(20e6, false);
-	BB.SaveMatrix("Lopsided");
-	BB.PrintBMP(99, "Grey", "Lopsided BW");
+	// Calculate points in Buddhabrot
+	BB.CalcDouble(40, false);
+
+	// Save Buddhabrot as text file and as image
+	BB.SaveMatrix("Test");
+	BB.PrintBMP(99.2, "Gold", "Test");
+
 
 	std::cout << "Press any key to continue..." << std::endl;
 	std::getchar();
