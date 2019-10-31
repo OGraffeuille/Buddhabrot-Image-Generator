@@ -1,7 +1,9 @@
 # Buddhabrot
-A c++ program to generate images using the "Buddhabrot" algorithm, a modified version of the Mandelbrot pattern. This code is a new version of a Matlab project I worked on a number of years ago, in a (eventually successful) attempt to make the algorithm more efficient to be able to make print quality images.
+This repository contains a c++ program which generates images using the "Buddhabrot" algorithm. This algorithm is a modified version of the well known Mandelbrot fractal. More information on this algorithm can be found at https://en.wikipedia.org/wiki/Buddhabrot.
 
-The Buddhabrot is created by sampling random points on the complex plane and iterating them using the mandelbrot sequence, and plotting the path of points which diverge in a set range of steps. By changing the required number of iterations to plot, we change the appearance of the Buddhabrot. It's worth noting that since this is an inherently random process, there is no 'correct' buddhabrot, just random generations of it. 
+The Buddhabrot is created by sampling random points on the complex plane and iterating them using the Mandelbrot sequence, and plotting the path of points which diverge after a specified range of iterations. Specifying different number of iterations to plot will change the appearance of the Buddhabrot. It's worth noting that since this is an inherently random process, there is no 'true' buddhabrot, just generated instances of it. 
+
+This code is a new version of a Matlab project I completed years ago. Re-writing this in C++ allowed me to make the algorithm more efficient, and allowed me to generate images of much higher resolution.
 
 Print quality images are generally ~7500x7500 bmp files. A few lower resolution (2500x2500) images are shown here:
 
